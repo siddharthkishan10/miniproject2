@@ -1,0 +1,27 @@
+<!-- templates/approve_lecturer.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Approve Lecturers</title>
+    <link rel="stylesheet" href="{% static 'css/try.css' %}">
+</head>
+<body>
+    <div class="cont">
+        <h2>Lecturers Pending Approval</h2>
+        <ul>
+            {% for lecturer in lecturers %}
+            <li>
+                <span>{{ lecturer.username }} ({{ lecturer.email }})</span>
+                <form method="post" style="display:inline;">
+                    {% csrf_token %}
+                    <input type="hidden" name="user_id" value="{{ lecturer.id }}">
+                    <button type="submit" class="submit">Approve</button>
+                </form>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
